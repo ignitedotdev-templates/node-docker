@@ -1,5 +1,7 @@
 name: Build and push nodejs app to harbor
-on: [push]
+on: 
+  push:
+    branches: [ main ]
 
 jobs:
   build:
