@@ -1,15 +1,17 @@
-name: Build and push nodejs app to harbor
-on: 
+name: Build Docker image
+on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
-    name: Hello world
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Write a multi-line message
-      run: |
-        echo This demo file shows a 
-        echo very basic and easy-to-understand workflow.
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and tag image
+        COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
+        run: docker build -t ${{ github.repository }}:$COMMIT_SHA  .
