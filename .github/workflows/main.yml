@@ -23,8 +23,8 @@ jobs:
 
       - name: Log in to Harbor
         run: |
-              run echo ${{ secrets.DOCKERHUB_USERNAME }}
-              run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+              echo ${{ secrets.DOCKERHUB_USERNAME }}
+              echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Push image to Harbor
         run: docker push ${{ secrets.HARBOR_REGISTRY_URL }}/nodejs-build/${{ github.repository }}:${{env.build_id }}
