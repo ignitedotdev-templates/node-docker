@@ -23,7 +23,8 @@ jobs:
 
       - name: Log in to Harbor
         run: |
-              echo ${{ secrets.HARBOR_CREDENTIALS }} | base64 --decode | docker login -u $(cut -d ':' -f1 <<< "${{ secrets.HARBOR_CREDENTIALS }}") --password-stdin ${{ secrets.HARBOR_REGISTRY_URL }}
+              run echo ${{ secrets.DOCKERHUB_USERNAME }}
+              run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Push image to Harbor
         run: docker push ${{ secrets.HARBOR_REGISTRY_URL }}/nodejs-build/${{ github.repository }}:${{env.build_id }}
