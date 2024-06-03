@@ -21,7 +21,6 @@ jobs:
       - name: Retag the image
         run: docker tag ${{ github.repository }}:${{env.build_id }} ${{ secrets.HARBOR_REGISTRY_URL }}/nodejs-build/${{ github.repository }}:${{env.build_id }}
 
-  push:
       - name: Log in to Harbor
         run: |
               echo ${{ secrets.HARBOR_CREDENTIALS }} | base64 --decode | docker login -u $(cut -d ':' -f1 <<< "${{ secrets.HARBOR_CREDENTIALS }}") --password-stdin ${{ secrets.HARBOR_REGISTRY_URL }}
