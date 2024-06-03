@@ -15,4 +15,4 @@ jobs:
       - name: Log in to Harbor
         run: |
               echo ${{ secrets.DOCKERHUB_USERNAME }}
-              echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+              echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login  ${{ secrets.HARBOR_REGISTRY_URL }} -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
