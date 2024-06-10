@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-
+      
 env:
   build_id: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
 
@@ -26,4 +26,4 @@ jobs:
               echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login  ${{ secrets.HARBOR_REGISTRY_URL }} -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Push image to Harbor
-        run: docker push ${{ secrets.HARBOR_REGISTRY_URL }}/nodejs-build/${{ github.repository }}:${{env.build_id }}
+        run: docker push ${{ secrets.HARBOR_REGISTRY_URL }}/docker-images/${{ github.repository }}:${{env.build_id }}
