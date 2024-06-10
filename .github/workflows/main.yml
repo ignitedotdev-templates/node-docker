@@ -19,7 +19,7 @@ jobs:
         run: docker build -t ${{ github.repository }}:${{env.build_id }}  .
 
       - name: Retag the image
-        run: docker tag ${{ github.repository }}:${{env.build_id }} ${{ secrets.HARBOR_REGISTRY_URL }}/nodejs-build/${{ github.repository }}:${{env.build_id }}
+        run: docker tag ${{ github.repository }}:${{env.build_id }} ${{ secrets.HARBOR_REGISTRY_URL }}/docker-images/${{ github.repository }}:${{env.build_id }}
 
       - name: Log in to Harbor
         run: |
